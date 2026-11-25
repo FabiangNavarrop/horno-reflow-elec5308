@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horno de reflujo | Análisis de Sistemas</title>
+<style>
+:root{--bg:#0a1020;--panel:#111b30;--panel2:#16233b;--line:#2a3a58;--text:#eef4ff;--muted:#a5b5ce;--cyan:#55d6e8;--blue:#6f9cff;--orange:#ffb86b;--green:#7ce0b1}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#1b3760 0,transparent 38%),var(--bg);color:var(--text);font:16px/1.6 Inter,Segoe UI,system-ui,sans-serif}a{color:var(--cyan);text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 24px}.topbar{position:sticky;top:0;z-index:10;background:#0a1020eF;border-bottom:1px solid #263650;backdrop-filter:blur(12px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}.brand{font-weight:800;letter-spacing:.03em}.brand span{color:var(--cyan)}nav{display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem;color:var(--muted)}nav a{color:var(--muted)}nav a:hover{color:var(--cyan)}.hero{padding:76px 0 56px}.eyebrow{color:var(--cyan);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800}.hero h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1.02;letter-spacing:-.055em;max-width:850px;margin:16px 0 24px}.hero h1 em{font-style:normal;color:var(--cyan)}.lead{max-width:750px;color:var(--muted);font-size:1.12rem}.hero-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:22px;align-items:stretch}.hero-stat,.panel,.step,.metric{background:linear-gradient(145deg,#14213a,#0f192b);border:1px solid var(--line);border-radius:18px}.hero-stat{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.stat small,.metric small{display:block;color:var(--muted);font-size:.8rem}.stat strong{font-size:1.6rem;display:block;margin-top:5px}.stat strong.cyan{color:var(--cyan)}section{padding:54px 0;scroll-margin-top:78px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:26px}.section-head h2{font-size:clamp(1.8rem,4vw,2.7rem);line-height:1.12;margin:8px 0}.section-head p{max-width:520px;color:var(--muted);margin:0}.tag{display:inline-block;border:1px solid #34516c;border-radius:999px;padding:4px 10px;color:var(--cyan);font-size:.78rem}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{padding:22px}.panel h3{margin:0 0 10px;font-size:1.08rem}.muted{color:var(--muted)}.architecture{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:26px 0 16px}.arch-node{border:1px solid #385170;background:#14243b;border-radius:13px;padding:15px 10px;text-align:center;position:relative;min-height:118px;display:flex;flex-direction:column;justify-content:center}.arch-node:not(:last-child):after{content:"→";position:absolute;right:-15px;top:40%;z-index:1;color:var(--cyan);font-size:1.25rem}.arch-node b{font-size:.92rem}.arch-node small{color:var(--muted);font-size:.78rem;margin-top:7px}.chip{display:inline-block;padding:3px 8px;border-radius:6px;background:#20344f;color:#dceaff;font-size:.76rem;margin:3px}.equation{padding:18px;background:#0a1425;border:1px solid #253a57;border-radius:12px;font:clamp(1rem,2vw,1.35rem) ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.equation + p{margin-bottom:0}.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.step{padding:20px}.step .num{width:32px;height:32px;display:grid;place-items:center;background:#1b3852;color:var(--cyan);border-radius:9px;font-weight:800}.step h3{margin:12px 0 6px}.step p{margin:0;color:var(--muted)}.formula{font-family:ui-monospace,Consolas,monospace;color:#d8e9ff;background:#0a1425;padding:10px 12px;border-radius:8px;margin-top:12px;overflow-wrap:anywhere}.svg-wrap{background:#0a1425;border:1px solid var(--line);border-radius:14px;padding:12px;overflow:hidden}.svg-wrap svg{width:100%;height:auto;display:block}.sim-layout{display:grid;grid-template-columns:330px 1fr;gap:20px}.controls{display:flex;flex-direction:column;gap:19px}.control label{display:flex;justify-content:space-between;gap:12px;font-size:.9rem}.control output{color:var(--cyan);font-weight:800;font-variant-numeric:tabular-nums}.control input{width:100%;accent-color:var(--cyan);margin-top:9px}.control small{display:block;color:var(--muted);font-size:.78rem}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}.metric{padding:15px}.metric strong{font-size:1.25rem;display:block;font-variant-numeric:tabular-nums}.metric .mini{font-size:.78rem;color:var(--muted)}canvas{display:block;width:100%;height:340px;background:#0a1425;border-radius:12px;border:1px solid #263650}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin:12px 0}.legend span:before{content:"";display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:7px;background:var(--blue)}.legend .closed:before{background:var(--cyan)}.legend .target:before{background:var(--orange);height:2px}.poles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.pole{background:#101d31;border:1px solid var(--line);border-radius:10px;padding:12px}.pole small{display:block;color:var(--muted)}.pole strong{font-family:ui-monospace,Consolas,monospace}.code{position:relative}.code pre{white-space:pre;overflow:auto;background:#07101e;color:#d5e7ff;border:1px solid #263650;border-radius:13px;padding:22px;font-size:.85rem;line-height:1.65}.copy{float:right;border:1px solid #3c5877;background:#1a2b44;color:var(--text);padding:8px 12px;border-radius:8px;cursor:pointer}.conclusions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.conclusions .panel{border-top:3px solid var(--cyan)}.foot{border-top:1px solid var(--line);padding:28px 0 42px;color:var(--muted);font-size:.85rem}.warning{border-left:3px solid var(--orange);padding:12px 15px;background:#211e1b;border-radius:0 9px 9px 0;color:#f3d8b6;font-size:.88rem}.smallprint{font-size:.82rem;color:var(--muted)}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@media(max-width:850px){nav{display:none}.hero-grid,.grid2,.sim-layout{grid-template-columns:1fr}.architecture{grid-template-columns:1fr}.arch-node{min-height:80px}.arch-node:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-22px}.section-head{display:block}.section-head p{margin-top:10px}.conclusions{grid-template-columns:1fr}.hero{padding-top:52px}}
+@media(max-width:520px){.wrap{padding:0 15px}.hero-stat,.steps,.metrics,.poles{grid-template-columns:1fr 1fr}.metric strong{font-size:1rem}.panel{padding:16px}canvas{height:280px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap nav"><div class="brand">CONTROL<span>LAB</span> / SMD</div><nav><a href="#arquitectura">Arquitectura</a><a href="#modelo">Modelo matemático</a><a href="#bloques">Diagramas</a><a href="#simulador">Simulador</a><a href="#octave">GNU Octave</a><a href="#conclusiones">Conclusiones</a></nav></div></header>
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">ELEC-5308 · Análisis de Sistemas</div>
+  <div class="hero-grid">
+    <div><h1>Control térmico de un <em>horno de reflujo</em></h1><p class="lead">Del balance de energía a la respuesta dinámica: modelado de una zona de calentamiento SMD, reducción del diagrama de bloques y comparación entre lazo abierto y realimentación negativa.</p><p class="smallprint">Modelo de primer orden · Parámetros supuestos de ingeniería · SAC305</p></div>
+    <div class="hero-stat">
+      <div class="stat"><small>Temperatura pico objetivo</small><strong class="cyan">245 °C</strong></div>
+      <div class="stat"><small>Fusión SAC305</small><strong>217 °C</strong></div>
+      <div class="stat"><small>Constante térmica τ</small><strong id="heroTau">200 s</strong></div>
+      <div class="stat"><small>Ganancia proporcional</small><strong id="heroKp">Kp = 2</strong></div>
+    </div>
+  </div>
+</div>
+
+<section id="arquitectura"><div class="wrap">
+  <div class="section-head"><div><span class="tag">01 / Planta industrial</span><h2>Arquitectura de control</h2></div><p>Se modela una zona térmica individual. En un horno real, cada zona dispone de su propio lazo y la tarjeta recorre el perfil completo mediante la banda transportadora.</p></div>
+  <div class="architecture">
+    <div class="arch-node"><b>Referencia</b><small>Perfil / consigna<br>245 °C pico</small></div>
+    <div class="arch-node"><b>Controlador</b><small>Control de temperatura o PLC<br>Kp + prealimentación</small></div>
+    <div class="arch-node"><b>Actuador</b><small>Relé de estado sólido<br>Resistencia de 1000 W</small></div>
+    <div class="arch-node"><b>Planta térmica</b><small>Cámara, aire, paredes y banda</small></div>
+    <div class="arch-node"><b>Medición</b><small>Termopar tipo K<br>Acondicionamiento</small></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><h3>Variable controlada</h3><p class="muted">Temperatura de la zona, expresada como desviación respecto de la temperatura ambiente. La potencia eléctrica se convierte en energía térmica; parte se pierde hacia el entorno.</p><span class="chip">Entrada: potencia P (W)</span><span class="chip">Salida: temperatura θ (°C)</span></div>
+    <div class="panel"><h3>Perturbaciones de proceso</h3><p class="muted">Entrada de tarjetas frías, cambios de velocidad de la banda, variaciones de tensión de red, temperatura ambiente y aperturas del horno.</p><span class="chip">Sensor</span><span class="chip">Realimentación negativa</span><span class="chip">Límite de potencia</span></div>
+  </div>
+</div></section>
+
+<section id="modelo"><div class="wrap">
+  <div class="section-head"><div><span class="tag">02 / Derivación</span><h2>Modelado matemático paso a paso</h2></div><p>El modelo concentra la masa térmica y las pérdidas de calor en una resistencia térmica y una capacitancia térmica equivalentes.</p></div>
+  <div class="steps">
+    <article class="step"><div class="num">1</div><h3>Balance de energía</h3><p>Potencia que entra menos calor perdido es igual a la energía térmica acumulada.</p><div class="formula">Cₜ · dθ/dt = P − θ/Rₜ</div></article>
+    <article class="step"><div class="num">2</div><h3>Forma normalizada</h3><p>Multiplicando por Rₜ se obtiene una ecuación diferencial de primer orden.</p><div class="formula">RₜCₜ · dθ/dt + θ = RₜP</div></article>
+    <article class="step"><div class="num">3</div><h3>Transformada de Laplace</h3><p>Con condiciones iniciales nulas, la derivada se convierte en sΘ(s).</p><div class="formula">(τs + 1)Θ(s) = RₜP(s)<br>τ = RₜCₜ</div></article>
+    <article class="step"><div class="num">4</div><h3>Función de transferencia</h3><p>La planta relaciona la potencia aplicada con la desviación de temperatura.</p><div class="formula">G(s) = Θ(s)/P(s) = Rₜ/(τs + 1)</div></article>
+  </div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="panel"><h3>Parámetros base del documento</h3><div class="equation">Rₜ = 0.5 °C/W<br>Cₜ = 400 J/°C<br>Kp = 2<br>τ = RₜCₜ = 200 s</div></div>
+    <div class="panel"><h3>Transferencia base</h3><div class="equation">G(s) = 0.5 / (200s + 1)</div><p class="muted">La prealimentación nominal es Kff = 1/Rₜ = 2 W/°C. Para un salto térmico de 220 °C desde 25 °C, la potencia base estimada es 440 W.</p></div>
+  </div>
+</div></section>
+
+<section id="bloques"><div class="wrap">
+  <div class="section-head"><div><span class="tag">03 / Representación</span><h2>Diagrama de bloques y polos</h2></div><p>Comparación de la estructura de prealimentación en lazo abierto y la corrección por realimentación negativa en lazo cerrado.</p></div>
+  <div class="grid2">
+    <div class="panel"><h3>Lazo abierto con prealimentación</h3><div class="svg-wrap"><svg viewBox="0 0 600 180" role="img" aria-label="Diagrama de bloques de lazo abierto"><defs><marker id="arr1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6Z" fill="#55d6e8"/></marker></defs><g fill="none" stroke="#55d6e8" stroke-width="2" marker-end="url(#arr1)"><path d="M30 85H95"/><path d="M175 85H240"/><path d="M390 85H465"/></g><g fill="#14243b" stroke="#55718f" stroke-width="1.5"><rect x="95" y="57" width="80" height="56" rx="8"/><rect x="240" y="43" width="150" height="84" rx="8"/></g><g fill="#eef4ff" text-anchor="middle" font-size="15"><text x="30" y="68">R(s)</text><text x="135" y="80">Kff</text><text x="135" y="99">1/Rₜ</text><text x="315" y="76">G(s)</text><text x="315" y="98">Rₜ/(τs+1)</text><text x="495" y="90">Y(s)</text></g></svg></div><p class="muted">Con la prealimentación nominal, la ganancia estática de la ruta de referencia se normaliza a 1 en el modelo ideal.</p></div>
+    <div class="panel"><h3>Lazo cerrado proporcional</h3><div class="svg-wrap"><svg viewBox="0 0 600 220" role="img" aria-label="Diagrama de bloques de lazo cerrado"><defs><marker id="arr2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6Z" fill="#55d6e8"/></marker></defs><g fill="none" stroke="#55d6e8" stroke-width="2" marker-end="url(#arr2)"><path d="M28 82H82"/><path d="M112 82H155"/><path d="M225 82H280"/><path d="M420 82H490"/><path d="M520 82V168H97V103"/></g><circle cx="97" cy="82" r="15" fill="#14243b" stroke="#8ca6c5" stroke-width="1.5"/><rect x="155" y="56" width="70" height="52" rx="8" fill="#14243b" stroke="#55718f" stroke-width="1.5"/><rect x="280" y="43" width="140" height="78" rx="8" fill="#14243b" stroke="#55718f" stroke-width="1.5"/><g fill="#eef4ff" font-size="15" text-anchor="middle"><text x="28" y="63">R(s)</text><text x="97" y="87">+</text><text x="87" y="123">−</text><text x="190" y="87" font-weight="700">Kp</text><text x="350" y="73" font-weight="700">G(s)</text><text x="350" y="96" font-size="13">Rₜ/(τs+1)</text><text x="545" y="85">Y(s)</text><text x="310" y="195" fill="#a5b5ce" font-size="13">Realimentación unitaria</text></g></svg></div><p class="muted">Para la planta de primer orden y realimentación unitaria, el denominador cerrado es τs + 1 + KpRₜ.</p></div>
+  </div>
+  <div class="panel" style="margin-top:20px"><h3>Ubicación de polos (según parámetros actuales)</h3><div class="svg-wrap"><svg id="poleSvg" viewBox="0 0 700 210" role="img" aria-label="Mapa de polos en el eje real"><line x1="40" y1="115" x2="660" y2="115" stroke="#657d9b" stroke-width="1.5"/><g id="poleTicks" fill="#a5b5ce" font-size="12" text-anchor="middle"></g><g id="poleMarks"></g><text x="350" y="25" text-anchor="middle" fill="#eef4ff" font-size="14">Plano s · eje real</text><text x="350" y="196" text-anchor="middle" fill="#a5b5ce" font-size="12">Los polos se desplazan al modificar Rₜ, Cₜ y Kp</text></svg></div><div class="legend"><span style="--blue:#6f9cff">Polo lazo abierto</span><span class="closed">Polo lazo cerrado</span></div></div>
+</div></section>
+
+<section id="simulador"><div class="wrap">
+  <div class="section-head"><div><span class="tag">04 / Laboratorio interactivo</span><h2>Simulador de respuesta al escalón</h2></div><p>Ajuste los parámetros y observe en tiempo real la respuesta idealizada, el tiempo característico, los polos y la potencia estimada.</p></div>
+  <div class="sim-layout">
+    <div class="panel controls">
+      <h3>Parámetros de planta</h3>
+      <div class="control"><label for="rt">Resistencia térmica Rₜ <output id="rtVal">0.50 °C/W</output></label><input id="rt" type="range" min="0.2" max="1.2" step="0.05" value="0.5"><small>Mayor Rₜ: menores pérdidas térmicas.</small></div>
+      <div class="control"><label for="ct">Capacitancia térmica Cₜ <output id="ctVal">400 J/°C</output></label><input id="ct" type="range" min="100" max="800" step="25" value="400"><small>Mayor Cₜ: mayor inercia térmica.</small></div>
+      <div class="control"><label for="kp">Ganancia proporcional Kp <output id="kpVal">2.00</output></label><input id="kp" type="range" min="0.2" max="4" step="0.1" value="2"><small>Incrementarla desplaza el polo cerrado a la izquierda.</small></div>
+      <div class="control"><label for="dt">Salto térmico ΔT <output id="dtVal">220 °C</output></label><input id="dt" type="range" min="100" max="230" step="5" value="220"><small>Temperatura final objetivo = ambiente + ΔT.</small></div>
+      <div class="control"><label for="amb">Temperatura ambiente <output id="ambVal">25 °C</output></label><input id="amb" type="range" min="15" max="35" step="1" value="25"></div>
+      <button id="reset" class="copy" style="float:none;width:100%">Restablecer valores del documento</button>
+      <div class="warning">Modelo lineal ideal. No incluye saturación real del calentador, retardos del sensor ni perturbaciones dinámicas.</div>
+    </div>
+    <div>
+      <div class="metrics">
+        <div class="metric"><small>Constante τ</small><strong id="tauMetric">200 s</strong><span class="mini">Lazo abierto</span></div>
+        <div class="metric"><small>τ equivalente</small><strong id="taucMetric">100 s</strong><span class="mini">Lazo cerrado</span></div>
+        <div class="metric"><small>Temperatura objetivo</small><strong id="finalMetric">245 °C</strong><span class="mini">Valor de estabilización ideal</span></div>
+      </div>
+      <div class="panel"><h3>Respuesta al escalón</h3><canvas id="response" width="900" height="420" aria-label="Gráfico de respuesta al escalón"></canvas><div class="legend"><span>Lazo abierto</span><span class="closed">Lazo cerrado</span><span class="target">Consigna</span></div><p class="smallprint" id="settlingNote">Tiempo aproximado al 98 %: 800 s en lazo abierto y 400 s en lazo cerrado.</p></div>
+      <div class="poles"><div class="pole"><small>Polo lazo abierto</small><strong id="pOpen">−0.00500 s⁻¹</strong></div><div class="pole"><small>Polo lazo cerrado</small><strong id="pClosed">−0.01000 s⁻¹</strong></div></div>
+      <div class="panel" style="margin-top:14px"><h3>Interpretación</h3><p class="muted" id="interpretation">Con los valores nominales, el lazo cerrado reduce a la mitad la constante de tiempo. El modelo predice una respuesta más rápida manteniendo el valor final ideal.</p><p class="smallprint" id="powerNote">Potencia de prealimentación nominal: 440 W.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="octave"><div class="wrap">
+  <div class="section-head"><div><span class="tag">05 / Validación numérica</span><h2>Código de GNU Octave</h2></div><p>Script reproducible para construir las funciones de transferencia, comparar las respuestas y visualizar los polos. Requiere el paquete control.</p></div>
+  <div class="panel code"><button class="copy" id="copyCode">Copiar código</button><pre><code id="octaveCode">clear all; clc; close all;
+pkg load control;
+
+% Parametros del modelo termico (supuestos de ingenieria)
+Rt = 0.5;       % Resistencia termica [°C/W]
+Ct = 400;       % Capacitancia termica [J/°C]
+Kp = 2;         % Ganancia proporcional
+tau = Rt * Ct;  % Constante de tiempo [s]
+
+% Planta: temperatura incremental / potencia
+s = tf('s');
+G = Rt / (tau*s + 1);
+
+% Lazo abierto con prealimentacion Kff = 1/Rt
+Kff = 1/Rt;
+Mla = Kff * G;
+
+% Lazo cerrado proporcional con realimentacion unitaria
+Mlc = feedback(Kp*G, 1);
+
+% Respuesta al escalon unitario y polos
+t = 0:1:1200;
+figure(1);
+step(Mla, Mlc, t);
+grid on;
+legend('Lazo abierto', 'Lazo cerrado');
+title('Respuesta al escalon');
+xlabel('Tiempo [s]');
+ylabel('Temperatura normalizada');
+
+figure(2);
+pzmap(Mla, Mlc);
+grid on;
+legend('Lazo abierto', 'Lazo cerrado');
+title('Mapa de polos');
+
+% Para comparar temperaturas, escalar la respuesta por DeltaT
+% y sumar la temperatura ambiente si se requiere.</code></pre></div>
+  <p class="smallprint">Nota de consistencia: el script usa la realimentación proporcional estándar, cuyo valor final puede ser menor que la consigna. El simulador web muestra una comparación normalizada al mismo valor final para aislar el efecto de la rapidez, siguiendo la comparación ideal del informe. Son dos convenciones de análisis distintas; no deben confundirse.</p>
+</div></section>
+
+<section id="conclusiones"><div class="wrap">
+  <div class="section-head"><div><span class="tag">06 / Cierre técnico</span><h2>Conclusiones</h2></div><p>El modelo permite entender el compromiso entre rapidez de respuesta, potencia disponible y rechazo de perturbaciones.</p></div>
+  <div class="conclusions">
+    <div class="panel"><h3>01. Prealimentación</h3><p class="muted">Calcula una potencia base a partir del salto térmico esperado. Con el modelo exacto, compensa las pérdidas nominales y alcanza el objetivo ideal.</p></div>
+    <div class="panel"><h3>02. Realimentación</h3><p class="muted">La medición permite corregir el error y responder a perturbaciones. Con Kp = 2, el informe compara un polo de −0.005 con uno de −0.01 s⁻¹ y una respuesta aproximadamente dos veces más rápida.</p></div>
+    <div class="panel"><h3>03. Límites del modelo</h3><p class="muted">La potencia inicial puede acercarse al límite de 1000 W. Un modelo de primer orden, sensor ideal y parámetros supuestos no representa todas las dinámicas de un horno comercial.</p></div>
+  </div>
+  <div class="panel" style="margin-top:18px"><h3>Mejora futura</h3><p class="muted">Incorporar acción integral para reducir el error residual, además de saturación del actuador, retardo de medición y perturbaciones térmicas. Validar los parámetros con datos de una zona real.</p></div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap">ELEC-5308 · Análisis de Sistemas · Horno de reflujo SMD<br>Modelo académico basado en el documento de trabajo: resistencia térmica, capacitancia térmica y control proporcional.</div></footer>
+<script>
+const $ = id => document.getElementById(id);
+const ids = ['rt','ct','kp','dt','amb'];
+function params(){return {rt:+$('rt').value,ct:+$('ct').value,kp:+$('kp').value,dt:+$('dt').value,amb:+$('amb').value}}
+function fmt(n,d=2){return Number(n).toFixed(d)}
+function drawResponse(p,tau,tauc){
+ const canvas=$('response'),ctx=canvas.getContext('2d'),rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;
+ canvas.width=Math.max(320,Math.round(rect.width*dpr));canvas.height=Math.round((rect.width<500?280:340)*dpr);
+ const W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);
+ const pad={l:60*dpr,r:22*dpr,t:24*dpr,b:44*dpr},pw=W-pad.l-pad.r,ph=H-pad.t-pad.b;
+ const ymax=Math.ceil((p.amb+p.dt*1.12)/50)*50, xmax=Math.max(5*tau,5*tauc,400);
+ const X=t=>pad.l+(t/xmax)*pw,Y=v=>pad.t+ph-(v/ymax)*ph;
+ ctx.font=`${12*dpr}px system-ui`;ctx.lineWidth=1*dpr;
+ for(let i=0;i<=5;i++){let val=ymax*i/5,y=Y(val);ctx.strokeStyle='#263650';ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(W-pad.r,y);ctx.stroke();ctx.fillStyle='#a5b5ce';ctx.textAlign='right';ctx.fillText(val.toFixed(0),pad.l-9*dpr,y+4*dpr)}
+ for(let i=0;i<=5;i++){let t=xmax*i/5,x=X(t);ctx.strokeStyle='#263650';ctx.beginPath();ctx.moveTo(x,pad.t);ctx.lineTo(x,H-pad.b);ctx.stroke();ctx.fillStyle='#a5b5ce';ctx.textAlign='center';ctx.fillText(t.toFixed(0),x,H-pad.b+19*dpr)}
+ ctx.fillStyle='#a5b5ce';ctx.textAlign='center';ctx.fillText('Tiempo [s]',pad.l+pw/2,H-7*dpr);ctx.save();ctx.translate(16*dpr,pad.t+ph/2);ctx.rotate(-Math.PI/2);ctx.fillText('Temperatura [°C]',0,0);ctx.restore();
+ function curve(tconst,color,dash=[]){ctx.beginPath();ctx.setLineDash(dash);ctx.strokeStyle=color;ctx.lineWidth=2.6*dpr;for(let i=0;i<=400;i++){let t=xmax*i/400,y=p.amb+p.dt*(1-Math.exp(-t/tconst)),x=X(t),yy=Y(y);if(i===0)ctx.moveTo(x,yy);else ctx.lineTo(x,yy)}ctx.stroke();ctx.setLineDash([])}
+ ctx.beginPath();ctx.setLineDash([7*dpr,5*dpr]);ctx.strokeStyle='#ffb86b';ctx.lineWidth=1.7*dpr;ctx.moveTo(pad.l,Y(p.amb+p.dt));ctx.lineTo(W-pad.r,Y(p.amb+p.dt));ctx.stroke();ctx.setLineDash([]);
+ curve(tau,'#6f9cff',[7*dpr,4*dpr]);curve(tauc,'#55d6e8');
+}
+function drawPoles(p,tau,tauc){
+ const svg=$('poleSvg'),ticks=$('poleTicks'),marks=$('poleMarks');ticks.innerHTML='';marks.innerHTML='';
+ const po=-1/tau,pc=-(1+p.kp*p.rt)/tau,lim=Math.max(Math.abs(po),Math.abs(pc))*1.25;
+ const x=v=>45+(v+lim)/lim*610;
+ for(let i=0;i<=4;i++){let v=-lim+2*lim*i/4,xx=x(v);ticks.innerHTML+=`<line x1="${xx}" y1="105" x2="${xx}" y2="125" stroke="#657d9b"/><text x="${xx}" y="145">${v.toFixed(4)}</text>`}
+ const xo=x(po),xc=x(pc);
+ marks.innerHTML=`<circle cx="${xo}" cy="82" r="7" fill="#6f9cff"/><text x="${xo}" y="62" fill="#6f9cff" text-anchor="middle" font-size="12">LA</text><circle cx="${xc}" cy="148" r="7" fill="#55d6e8"/><text x="${xc}" y="171" fill="#55d6e8" text-anchor="middle" font-size="12">LC</text>`;
+}
+function update(){
+ const p=params(),tau=p.rt*p.ct,tauc=tau/(1+p.kp*p.rt),target=p.amb+p.dt,power=p.dt/p.rt;
+ $('rtVal').textContent=fmt(p.rt,2)+' °C/W';$('ctVal').textContent=fmt(p.ct,0)+' J/°C';$('kpVal').textContent=fmt(p.kp,2);$('dtVal').textContent=fmt(p.dt,0)+' °C';$('ambVal').textContent=fmt(p.amb,0)+' °C';
+ $('heroTau').textContent=fmt(tau,1)+' s';$('heroKp').textContent='Kp = '+fmt(p.kp,2);
+ $('tauMetric').textContent=fmt(tau,1)+' s';$('taucMetric').textContent=fmt(tauc,1)+' s';$('finalMetric').textContent=fmt(target,1)+' °C';
+ $('pOpen').textContent=(1/tau>0?'−':'')+fmt(Math.abs(-1/tau),5)+' s⁻¹';$('pClosed').textContent='−'+fmt((1+p.kp*p.rt)/tau,5)+' s⁻¹';
+ $('settlingNote').textContent=`Tiempo aproximado al 98 % (≈ 4τ): ${fmt(4*tau,0)} s en lazo abierto y ${fmt(4*tauc,0)} s en lazo cerrado.`;
+ $('interpretation').textContent=`Con estos parámetros, la constante de tiempo se reduce de ${fmt(tau,1)} s a ${fmt(tauc,1)} s. El polo cerrado es más negativo, por lo que la respuesta normalizada es más rápida.`;
+ $('powerNote').textContent=`Potencia de prealimentación estimada para el salto térmico: ${fmt(power,1)} W. ${power>1000?'Supera la potencia nominal de 1000 W; el actuador saturaría.':power>800?'Se acerca al límite nominal de 1000 W.':'Está por debajo del límite nominal de 1000 W.'}`;
+ drawResponse(p,tau,tauc);drawPoles(p,tau,tauc);
+}
+ids.forEach(id=>$(id).addEventListener('input',update));
+$('reset').addEventListener('click',()=>{Object.entries({rt:.5,ct:400,kp:2,dt:220,amb:25}).forEach(([k,v])=>$(k).value=v);update()});
+$('copyCode').addEventListener('click',async()=>{const text=$('octaveCode').innerText;try{await navigator.clipboard.writeText(text);$('copyCode').textContent='Código copiado';setTimeout(()=>$('copyCode').textContent='Copiar código',1600)}catch(e){$('copyCode').textContent='Seleccione y copie el código'}});
+window.addEventListener('resize',()=>update());update();
+</script>
+</body>
+</html>
